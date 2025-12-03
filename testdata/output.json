@@ -1,0 +1,15 @@
+{
+ "resourceType": "Patient",
+ "id": "12345",
+ "name": [
+  {
+   "family": "Doe",
+   "given": [
+    "John",
+    "A"
+   ]
+  }
+ ],
+ "gender": "male",
+ "birthDate": "1980-01-15"
+}
