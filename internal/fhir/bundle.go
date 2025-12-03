@@ -18,4 +18,5 @@ func (b *Bundle) AddEntry(resourceType, id string, resource interface{}) {
 		Resource: resource,
 	}
 	b.Entry = append(b.Entry, entry)
+
 }
