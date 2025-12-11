@@ -53,8 +53,10 @@ func ConvertToBundle(msg *hl7.Message) (*fhir.Bundle, error) {
 	}
 
 	//Convert Observations
+	//Convert Observations
+	var observations []*fhir.Oberservation
 	if patient != nil {
-		observations, err := ConvertToObservations(msg, patient.ID)
+		observations, err = ConvertToObservations(msg, patient.ID)
 		if err != nil {
 			return nil, err
 		}
@@ -64,5 +66,22 @@ func ConvertToBundle(msg *hl7.Message) (*fhir.Bundle, error) {
 		}
 	}
 
+	//Convert Diagnostic Reports
+	if patient != nil {
+		report, err := ConvertToDiagnosticReport(msg, patient.ID)
+		if err != nil {
+			return nil, err
+		}
+		if report != nil {
+			for _, obs := range observations {
+				report.Result = append(report.Result, fhir.Reference{
+					Reference: "Observation/" + obs.ID,
+				})
+			}
+			bundle.AddEntry("DiagnosticReport", report.ID, report)
+		}
+	}
+
 	return bundle, nil
+
 }

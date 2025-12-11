@@ -29,3 +29,7 @@ go.work
 
 # Claude Code
 .claude/
+
+# Test output
+testdata/*-output.json
+testdata/output.json

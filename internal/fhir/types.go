@@ -164,3 +164,16 @@ type Quantity struct {
 type ReferenceRange struct {
 	Text string `json:"text,omitempty"`
 }
+
+// DiagnosticReport represents a diagnostic report
+type DiagnosticReport struct {
+	ResourceType      string           `json:"resourceType"`
+	ID                string           `json:"id,omitempty"`
+	Status            string           `json:"status"` // final, preliminary
+	Code              *CodeableConcept `json:"code,omitempty"`
+	Subject           *Reference       `json:"subject,omitempty"`
+	EffectiveDateTime string           `json:"effectiveDateTime,omitempty"`
+	Issued            string           `json:"issued,omitempty"`
+	Performer         []Reference      `json:"performer,omitempty"`
+	Result            []Reference      `json:"result,omitempty"`
+}
